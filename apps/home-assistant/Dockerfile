@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.13.1-alpine
+FROM docker.io/library/python:3.13.2-alpine
 
 ARG TARGETPLATFORM
 ARG VERSION
@@ -16,7 +16,7 @@ ENV \
     CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
     HOMEASSISTANT_WHEELS="https://wheels.home-assistant.io/musllinux/" \
     HOME="/config" \
-    PYTHONPATH="/config/deps"
+    VENV_FOLDER="/config/.venv"
 
 ENV UMASK="0002" \
     TZ="Etc/UTC"
@@ -102,7 +102,7 @@ RUN \
     && \
     uv pip install --only-binary=:all: --find-links "${HOMEASSISTANT_WHEELS}" \
         homeassistant=="${VERSION}" \
-    && curl -L https://github.com/AlexxIT/go2rtc/releases/download/v1.9.7/go2rtc_linux_${GO2RTC_SUFFIX} --output /bin/go2rtc \
+    && curl -L https://github.com/AlexxIT/go2rtc/releases/download/v1.9.8/go2rtc_linux_${GO2RTC_SUFFIX} --output /bin/go2rtc \
     && chmod +x /bin/go2rtc \
     && mkdir -p /config && chown nobody:nogroup -R /config \
     && apk del --purge .build-deps \
