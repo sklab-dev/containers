@@ -67,6 +67,11 @@ jobs:
         shell: bash
         run: pip install --requirement requirements.txt && pip freeze
 
+      - name: Set script permissions
+        shell: bash
+        run: |
+          chmod +x ./apps/*/ci/latest.sh
+          
       - name: Prepare Matrices
         id: prepare-matrices
         env:
