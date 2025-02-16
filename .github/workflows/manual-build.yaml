@@ -15,6 +15,11 @@ on:
         type: string
         default: 'stable'
 
+# Add these permissions at the workflow level
+permissions:
+  contents: read
+  packages: write
+  
 jobs:
   call-build:
     uses: ./.github/workflows/build-images.yaml
