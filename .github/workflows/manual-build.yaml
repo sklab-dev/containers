@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Manual Build Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      appsToBuild:
+        description: 'Apps to build (comma-separated, empty for all)'
+        required: false
+        type: string
+      channelsToBuild:
+        description: 'Channels to build (stable,beta,etc)'
+        required: false
+        type: string
+        default: 'stable'
+
+jobs:
+  call-build:
+    uses: ./.github/workflows/build-images.yaml
+    with:
+      appsToBuild: ${{ inputs.appsToBuild }}
+      channelsToBuild: ${{ inputs.channelsToBuild }}
+      pushImages: true
+      sendNotifications: true
+      force: true
+    secrets:
+      BOT_APP_ID: ${{ secrets.BOT_APP_ID }}
+      BOT_APP_PRIVATE_KEY: ${{ secrets.BOT_APP_PRIVATE_KEY }}
