@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/goss-org/goss/master/docs/schema.yaml
+process:
+  merged:
+    running: true
+file:
+  /usr/local/bin/merged:
+    exists: true
+port:
+  tcp6:52000:
+    listening: true
