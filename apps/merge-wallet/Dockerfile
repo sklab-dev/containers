@@ -25,7 +25,7 @@ RUN deps="alpine-sdk curl autoconf automake libtool boost-dev openssl-dev libeve
   make install && \
   mkdir /wallet &&\
   cd /wallet && \
-  git clone https://github.com/ProjectMerge/merge.git . &&\   
+  git clone https://github.com/sklab-dev/merge-wallet.git . &&\   
  # sed -i '7s/.*/define(_CLIENT_VERSION_IS_RELEASE, true)/' ./configure.ac  &&\
   #sed -i '301i        obj.push_back(Pair("ipaddress", strHost));' ./src/rpc/masternode.cpp &&\
   ./autogen.sh && \ 
